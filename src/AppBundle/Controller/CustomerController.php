@@ -12,6 +12,9 @@ class CustomerController extends Controller
 
     public function indexAction(Request $request)
     {
-        return new Response('DUPA');
+        $customers=$this->getDoctrine()->getRepository('AppBundle:FullView')->findAll();
+        return $this->render('default/index.html.twig', array(
+            'customers' => $customers
+        ));
     }
 }
