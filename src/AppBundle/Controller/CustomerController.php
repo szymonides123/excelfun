@@ -6,13 +6,14 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use AppBundle\Entity\Customers;
 
 class CustomerController extends Controller
 {
 
     public function indexAction(Request $request)
     {
-        $customers=$this->getDoctrine()->getRepository('AppBundle:FullView')->findAll();
+        $customers=$this->getDoctrine()->getRepository(Customers::class)->findAll();
         return $this->render('default/index.html.twig', array(
             'customers' => $customers
         ));

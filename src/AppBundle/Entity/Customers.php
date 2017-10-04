@@ -8,7 +8,7 @@ use Doctrine\ORM\Mapping as ORM;
  * Customers
  *
  * @ORM\Table(name="Customers", indexes={@ORM\Index(name="fk_Customers_Contracts1_idx", columns={"con_ContractID"})})
- * @ORM\Entity
+ * @ORM\Entity(repositoryClass="AppBundle\Repository\CustomersRepository")
  */
 class Customers
 {
@@ -58,6 +58,55 @@ class Customers
      * })
      */
     private $conContractid;
+
+    function getCustomername() {
+        return $this->customername;
+    }
+
+    function getCustomeradress() {
+        return $this->customeradress;
+    }
+
+    function getCustomerpesel() {
+        return $this->customerpesel;
+    }
+
+    function getTelephonenumber() {
+        return $this->telephonenumber;
+    }
+
+    function getCustomerid() {
+        return $this->customerid;
+    }
+
+    function getConContractid(): \AppBundle\Entity\Contracts {
+        return $this->conContractid;
+    }
+
+    function setCustomername($customername) {
+        $this->customername = $customername;
+    }
+
+    function setCustomeradress($customeradress) {
+        $this->customeradress = $customeradress;
+    }
+
+    function setCustomerpesel($customerpesel) {
+        $this->customerpesel = $customerpesel;
+    }
+
+    function setTelephonenumber($telephonenumber) {
+        $this->telephonenumber = $telephonenumber;
+    }
+
+    function setCustomerid($customerid) {
+        $this->customerid = $customerid;
+    }
+
+    function setConContractid(\AppBundle\Entity\Contracts $conContractid) {
+        $this->conContractid = $conContractid;
+    }
+    
 
 
 }

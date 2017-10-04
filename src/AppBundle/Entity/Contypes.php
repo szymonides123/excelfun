@@ -28,6 +28,22 @@ class Contypes
      */
     private $contypeid;
 
+    function getContypename() {
+        return $this->contypename;
+    }
+
+    function getContypeid() {
+        return $this->contypeid;
+    }
+
+    function setContypename($contypename) {
+        $this->contypename = $contypename;
+    }
+
+    function setContypeid($contypeid) {
+        $this->contypeid = $contypeid;
+    }
+
 
 }
 

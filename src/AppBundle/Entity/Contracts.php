@@ -58,6 +58,54 @@ class Contracts
      * })
      */
     private $conContypeid;
+    function getContractvalue() {
+        return $this->contractvalue;
+    }
+
+    function getContractitem() {
+        return $this->contractitem;
+    }
+
+    function getConstartdate(): \DateTime {
+        return $this->constartdate;
+    }
+
+    function getConenddate(): \DateTime {
+        return $this->conenddate;
+    }
+
+    function getContractid() {
+        return $this->contractid;
+    }
+
+    function getConContypeid(): \AppBundle\Entity\Contypes {
+        return $this->conContypeid;
+    }
+
+    function setContractvalue($contractvalue) {
+        $this->contractvalue = $contractvalue;
+    }
+
+    function setContractitem($contractitem) {
+        $this->contractitem = $contractitem;
+    }
+
+    function setConstartdate(\DateTime $constartdate) {
+        $this->constartdate = $constartdate;
+    }
+
+    function setConenddate(\DateTime $conenddate) {
+        $this->conenddate = $conenddate;
+    }
+
+    function setContractid($contractid) {
+        $this->contractid = $contractid;
+    }
+
+    function setConContypeid(\AppBundle\Entity\Contypes $conContypeid) {
+        $this->conContypeid = $conContypeid;
+    }
+
 
 
 }

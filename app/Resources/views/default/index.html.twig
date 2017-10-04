@@ -2,12 +2,16 @@
 
 {% block body %}
     <table class="table table-hover"><tr>
-        <th>Nazwa Klienta</th><th>Adres</th><th>Pesel</th><th>nr. Telefonu</th><th>Wartość umowy</th><th>Przedmiot do umowy</th><th>Data podpisania</th><th>Data końca</th>
+        <th>Nazwa Klienta</th><th>Adres</th><th>Pesel</th><th>nr. Telefonu</th><th>Wartość umowy</th><th>Przedmiot do umowy</th><th>Data podpisania</th><th>Data końca</th><th>Typ umowy</th>
     </tr>
     {% for customer in customers %}
         <tr>
-            <td>{{ customer.CustomerName }}</td><td>{{ customer.CustomerAdress }}</td><td>{{ customer.CustomerPESEL }}</td><td>{{ customer.Telephonenumber }}</td><td>{{ customer.ContractValue }}zł</td><td>{{ customer.ContractItem }}</td><td>{{ customer.ConStartDate }}</td><td>{{ customer.ConEndDate }}</td><td>{{ customer.ConTypeName }}</td>
+            <td>{{ customer.customername }}</td><td>{{ customer.CustomerAdress }}</td><td>{{ customer.CustomerPESEL }}</td><td>{{ customer.Telephonenumber }}</td><td>{{ customer.conContractid.contractvalue }}zł</td>
+            <td>{{ customer.conContractid.contractitem}}</td><td>{{ customer.conContractid.ConStartDate|date('Y-m-d')  }}</td><td>{{ customer.conContractid.ConEndDate|date('Y-m-d') }}</td>
+            <td>{{ customer.conContractid.conContypeid.contypename}}</td>
         </tr>
     {% endfor %}
 </table>
 {% endblock %}
+
+{#<td>{{ customer.ConTypeName }}</td>#}
