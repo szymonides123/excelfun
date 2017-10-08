@@ -7,6 +7,8 @@ use AppBundle\Entity\Contracts;
 use AppBundle\Entity\Customers;
 use AppBundle\Entity\Contypes;
 use Doctrine\ORM\EntityManager;
+use League\Csv\Reader;
+
 
 
 class Csv {
@@ -17,29 +19,44 @@ class Csv {
    
     public function import_data(){
         
+        $csv = Reader::createFromPath('/var/www/html/excelfun/src/mockdata/import.csv')->setHeaderOffset(0);
+        
+//        $result = $csv->fetchAssoc();
+        
+        foreach ($csv as $row) {
+        
         $customers =  new Customers();
-        $customers->setCustomername('imie');
-        $customers->setCustomeradress('adres');
-        $customers->setCustomerpesel('12345678012');
-        $customers->setTelephonenumber('123456789');
+        $customers->setCustomername($row['CustomerName']);
+        $customers->setCustomeradress($row['CustomerAdress']);
+        $customers->setCustomerpesel($row['CustomerPESEL']);
+        $customers->setTelephonenumber($row['Telephonenumber']);
         $this->em->persist($customers);
         
         $contracts = new Contracts();
-        $contracts->setContractvalue('1234');
-        $contracts->setContractitem('telefon');
-        $contracts->setConstartdate(new \DateTime('-30 years'));
-        $contracts->setConenddate(new \DateTime('-29 years'));
+        $contracts->setContractvalue($row['ContractValue']);
+        $contracts->setContractitem($row['ContractItem']);
+        $contracts->setConstartdate(\DateTime::createFromFormat('Y-m-d', $row['ConStartDate']));
+        $contracts->setConenddate(\DateTime::createFromFormat('Y-m-d', $row['ConEndDate']));
       
         $this->em->persist($contracts);
         
-        $contype = new Contypes();
-        $contype->setContypename('telefon');
+        $contype = $this->em->getRepository(Contypes::class)
+            ->findOneBy([
+                'contypename' => $row['ConTypeName'],
+                ])
+        ;
         
+        if (null === $contype){
+        $contype = new Contypes();
+        $contype->setContypename($row['ConTypeName']);
         $this->em->persist($contype);
+        $this->em->flush();
+        }
         
         $customers->setConContractid($contracts);
         $contracts->setConContypeid($contype);
-        
+        }
+       
         $this->em->flush();
     }
 }
