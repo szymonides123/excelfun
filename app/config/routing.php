@@ -7,7 +7,7 @@ $collection = new RouteCollection();
 $collection->add('customers', new Route('/customers', array(
     '_controller' => 'AppBundle:Customer:index',
 )));
-$collection->add('excelus', new Route('/excel', array(
-    '_controller' => 'AppBundle:Excel:index',
+$collection->add('export', new Route('/export', array(
+    '_controller' => 'AppBundle:Eksport:index',
 )));
 return $collection;

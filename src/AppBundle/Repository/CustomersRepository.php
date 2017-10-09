@@ -5,6 +5,7 @@ namespace AppBundle\Repository;
 use Doctrine\ORM\EntityRepository;
 use AppBundle\Entity\Customers;
 
+
 class CustomersRepository extends EntityRepository
 {
     public function findAll()
@@ -15,5 +16,14 @@ class CustomersRepository extends EntityRepository
             )
             ->getResult();
     }
+    public function findFetch()
+    {
+        return $this->getEntityManager()
+            ->createQuery(
+                'SELECT c.customername, c.customeradress, c.customerpesel, c.telephonenumber, p.contractvalue, p.contractitem, t.contypename FROM AppBundle:Customers c JOIN AppBundle:Contracts p WITH c.conContractid = p.contractid JOIN AppBundle:Contypes t WITH p.conContypeid = t.contypeid'
+            )
+            ->getArrayResult();
+    }
 }
 
+// p.constartdate, p.conenddate,
