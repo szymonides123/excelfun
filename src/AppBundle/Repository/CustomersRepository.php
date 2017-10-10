@@ -20,10 +20,8 @@ class CustomersRepository extends EntityRepository
     {
         return $this->getEntityManager()
             ->createQuery(
-                'SELECT c.customername, c.customeradress, c.customerpesel, c.telephonenumber, p.contractvalue, p.contractitem, t.contypename FROM AppBundle:Customers c JOIN AppBundle:Contracts p WITH c.conContractid = p.contractid JOIN AppBundle:Contypes t WITH p.conContypeid = t.contypeid'
+                'SELECT c.customername, c.customeradress, c.customerpesel, c.telephonenumber, p.contractvalue, p.contractitem, p.constartdate, p.conenddate, t.contypename FROM AppBundle:Customers c JOIN AppBundle:Contracts p WITH c.conContractid = p.contractid JOIN AppBundle:Contypes t WITH p.conContypeid = t.contypeid'
             )
             ->getArrayResult();
     }
 }
-
-// p.constartdate, p.conenddate,
