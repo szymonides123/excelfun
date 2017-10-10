@@ -1,7 +1,7 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-    <table class="table table-hover"><tr>
+    <table class="table table-hover" border="1"><tr>
         <th>Nazwa Klienta</th><th>Adres</th><th>Pesel</th><th>nr. Telefonu</th><th>Wartość umowy</th><th>Przedmiot do umowy</th><th>Data podpisania</th><th>Data końca</th><th>Typ umowy</th>
     </tr>
     {% for customer in customers %}
@@ -14,4 +14,3 @@
 </table>
 {% endblock %}
 
-{#<td>{{ customer.ConTypeName }}</td>#}

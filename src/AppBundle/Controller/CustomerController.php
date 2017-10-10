@@ -12,10 +12,8 @@ use AppBundle\Service\Csv;
 class CustomerController extends Controller
 {
 
-    public function indexAction(Request $request, Csv $csv)
+    public function indexAction(Request $request)
     {
-//        $dupa = $this->get('AppBundle\Model\Csv');
-        $csv->import_data();
         $customers=$this->getDoctrine()->getRepository(Customers::class)->findAll();
         return $this->render('default/index.html.twig', array(
             'customers' => $customers

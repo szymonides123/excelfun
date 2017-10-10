@@ -8,6 +8,7 @@ use AppBundle\Entity\Customers;
 use AppBundle\Entity\Contypes;
 use Doctrine\ORM\EntityManager;
 use League\Csv\Reader;
+use AppBundle\Entity\Csvs;
 
 
 
@@ -18,9 +19,9 @@ class Csv {
         $this->em = $em;
     }
    
-    public function import_data(){
+    public function import_data($file){
         
-        $csv = Reader::createFromPath('/var/www/html/excelfun/src/mockdata/import.csv')->setHeaderOffset(0);
+        $csv = Reader::createFromFileObject($file)->setHeaderOffset(0);
         
 //        $result = $csv->fetchAssoc();
         

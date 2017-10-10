@@ -10,4 +10,7 @@ $collection->add('customers', new Route('/customers', array(
 $collection->add('export', new Route('/export', array(
     '_controller' => 'AppBundle:Eksport:index',
 )));
+$collection->add('import', new Route('/import', array(
+    '_controller' => 'AppBundle:Browse:index',
+)));
 return $collection;
